@@ -23,7 +23,7 @@ func Example() {
 	}
 
 	// make a trie of []rune key and int value
-	trie := NewTrieRoot[rune, int]()
+	trie := NewRoot[rune, int]()
 
 	// Put values to the trie
 	for _, e := range values {
@@ -43,7 +43,7 @@ func Example() {
 	}
 
 	// Traverse the whole trie
-	trie.Traverse(func(prefix [][]rune, path []*TrieNode[rune, int]) {
+	trie.Traverse(func(prefix [][]rune, path []*Node[rune, int]) {
 		for i := range prefix {
 			if i != 0 {
 				fmt.Print("|")
@@ -84,7 +84,7 @@ func TestParse(t *testing.T) {
 	testM := arraymap.New[string, string]()
 
 	//root := &TrieNode[rune, string]{}
-	root := NewTrieRoot[rune, string]()
+	root := NewRoot[rune, string]()
 
 	// put test
 	for _, e := range testS {
@@ -96,7 +96,7 @@ func TestParse(t *testing.T) {
 	}
 
 	// traverse test
-	root.Traverse(func(prefix [][]rune, path []*TrieNode[rune, string]) {
+	root.Traverse(func(prefix [][]rune, path []*Node[rune, string]) {
 		node := path[len(path)-1]
 		if node.Payload == "" {
 			t.Errorf("payload not found")
